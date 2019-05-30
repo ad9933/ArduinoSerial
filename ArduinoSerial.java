@@ -9,6 +9,7 @@ import java.net.*;
 
 class ArduinoSerial {
 	
+	//UDP 통신을 위한 포트 번호
 	static final int PORT_NUM = 7777;
 	
 	static final Serial serial = SerialFactory.createInstance();
@@ -32,6 +33,7 @@ class ArduinoSerial {
 		//시리얼 포트로 데이터가 들어왔을때 취할 행동 설정
 		serial.addListener(new SerialDataEventListener() {
 			
+			//받은 데이터를 아스키 코드로 변환한 후 화면에 출력함
 			public void dataReceived(SerialDataEvent event) {
 				try {
 					System.out.println("[*]Serial Input : " + event.getAsciiString());
@@ -64,6 +66,8 @@ class ArduinoSerial {
 		
 	}
 	
+
+	//main함수
 	public static void main(String[] args) {
 		System.out.println("[*]Starting...");
 		new ArduinoSerial();
